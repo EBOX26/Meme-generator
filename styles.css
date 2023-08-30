@@ -1,5 +1,24 @@
+* {
+     background-color:#46ad46;
+}
 
+#search {
+     font-size: larger;
+}
 
-.saved {
-     
+#picture {
+
+}
+#qupte {
+
+}
+#title {
+
+}
+#meme {
+     display:flex;
+     align-items: center;
+     background-color: cadetblue;
+     height: 350px;
+
 }
