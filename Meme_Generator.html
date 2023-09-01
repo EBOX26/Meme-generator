@@ -10,7 +10,8 @@
      <!--Import Google Icon Font-->
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <!--Import materialize.css-->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"> -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -27,7 +28,7 @@
 
      <div class="row">
 
-          <div class="col s12 m4 l1">
+          <div class="col s12 m4 l2">
             <!-- Left Side Navigation Panel -->
             
             <div id="saved" class="container">
@@ -40,24 +41,25 @@
 
           </div>
     
-          <div class="col col s12 m8 l11">
+          <div class="col col s12 m8 l10">
             <!-- Right Side Navigation Panel  -->
 
                <div id="search">
                     <!-- search engine -->
-                    <form action="/action_page.php">
-                         <input type="text" placeholder="Search.." name="search">
-                         <button type="submit">Submit</button>
+                    <form action="">
+                         <input type="text" placeholder="Search for an Image ..." name="search">
+                         <button class="submitButton" type="submit">Submit</button>
                        </form>
-                    search bar
 
                </div>
 
                <div id="meme" class="container">
                     <!-- image shown -->
-                    <input type="image" placeholder="Your saved memes will appear here" name="saved">
+                    <!-- <input type="image" placeholder="Your saved memes will appear here" name="saved"> -->
 
                     <span class="text" style="flex-direction: column">See your meme <br>come to life <br> <br> Search for an image</span>
+
+                    <input multiple="multiple" type="image" name="" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;">
                </div>
 
                <div id="quote" class="container">
@@ -66,15 +68,17 @@
                </div>
 
                <div id="save">
-                    <button id="saveButton">Save Your Meme</button>
+                    <a id="saveButton" class="waves-effect waves-light btn">Save Your Meme</a>
+
                </div>
 
 
           </div>
     
         </div>
-
-
+        
+        <!-- Loading JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 
 </body>

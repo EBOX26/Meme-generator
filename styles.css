@@ -4,12 +4,28 @@
 
 #search {
      font-size: larger;
+     overflow: hidden;
+
+}
+
+.submitButton {
+     /* float: unset; */
+     padding: 6px;
+     margin-top: 8px;
+     margin-left: 22px;
+     background: #cfe5a75c;
+     border: 2px solid rgba(0, 0, 0, 0.072);
+     cursor: pointer;
 }
 
 #picture {
 
 }
-#qupte {
+#quote {
+     display:flex;
+     align-items: center;
+     justify-content: center;
+
 
 }
 #title {
@@ -34,6 +50,26 @@
      background-color: cadetblue;
 }
 
+#save{
+     display:flex;
+     align-items: center;
+     justify-content: center;
+
+}
+
+#saveButton {
+     background: #cfe5a75c;
+     border: 2px solid rgba(0, 0, 0, 0.072);
+     color: black;
+     display: inline-flex;
+     align-items: center;
+}
+
 #saved {
      max-height: 250px;
+     width: auto;
+     display:flex;
+     align-items: center;
+     justify-content: center;
+
 }
