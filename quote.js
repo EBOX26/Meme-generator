@@ -22,8 +22,8 @@ function generateQuote()
         meme.quote = singleQuote.text;
       }
 
-      templateMeme();
-     
+      //templateMeme();
+     console.log(meme);
     });
 }
 
@@ -70,6 +70,7 @@ function generateImage()
       dataType: "json",
       success: function (response) {
           console.log(response);
+          meme.image = response;
       },
       error: function (xhr, status) {
           console.log(xhr, status);
@@ -83,8 +84,8 @@ function generateImage()
 
 
  function templateMeme() {
-  console.log(meme);
-  console.log(image);
+  console.log(meme.quote);
+  console.log(meme.image);
  }
   
   /*generateQuote().then(quote => {
@@ -109,6 +110,7 @@ function generateImage()
  //}
 
  //quoteButton.addEventListener("click", generateQuote);
- $("#quote-btn").click(generateImage);
- $("#image-btn").click(templateMeme);
+ $("#quote-btn").click(templateMeme);
+ $("#image-btn").click(generateImage);
+
   
