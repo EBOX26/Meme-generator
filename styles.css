@@ -20,5 +20,20 @@
      align-items: center;
      background-color: cadetblue;
      height: 350px;
+     text-align: center;
+     flex-direction: column;
+     justify-content: space-evenly;
 
+     width: 200px;
+     height: 300px;
+     object-fit: cover;
+
+}
+
+.text {
+     background-color: cadetblue;
+}
+
+#saved {
+     max-height: 250px;
 }
