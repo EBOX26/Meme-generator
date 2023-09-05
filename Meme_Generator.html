@@ -20,7 +20,8 @@
 <body>
      <h1 class="title">Random meme generator for dog lovers</h1>
      <div class="row">
-          <div class="col s12 m4 l2">
+          <!-- This div containes the buttons that will be created when saved -->
+          <div id="titleList" class="col s12 m4 l2">
             <!-- Left Side Navigation Panel -->
             <div id="saved" class="container">
                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsTvzpn3umSeSwnWfkbSXjWYVPIY-ZMBZfhw&usqp=CAU" alt="404 No Saved Images" style="max-height:250px; min-height: 50px">
@@ -40,6 +41,7 @@
                     <button id="quote-btn" class="waves-effect waves-light btn">Get Quote</button>
                </div>
                <div id="save">
+                    <input type="text" id="titleInput" placeholder="Enter a title">
                     <button id="saveButton" class="waves-effect waves-light btn">Save</button>
                </div>
                <!-- Button to load more images -->
