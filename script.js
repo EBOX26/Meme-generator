@@ -15,6 +15,7 @@ function generateQuote() {
       if (singleQuote) {
         meme.quote = singleQuote.text;
         displayQuote(); // Call a function to display the quote
+        console.log(meme);
       }
     });
 }
