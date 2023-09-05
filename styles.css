@@ -6,6 +6,7 @@
      background: #cfe5a75c;
      border: 2px solid rgba(0, 0, 0, 0.072);
      cursor: pointer;
+     text-align: center;
    }
    
    /* IDs */
@@ -145,4 +146,11 @@
    .title {
      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
      font-style: normal;
+     text-decoration: underline;
    }
+
+   .create-btn {
+    margin-top: 7px;
+   }
+
+   
