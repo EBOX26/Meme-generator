@@ -1,4 +1,4 @@
-const meme = {
+var meme = {
   quote: null
 };
 
@@ -6,7 +6,7 @@ function generateQuote() {
   fetch('https://type.fit/api/quotes?quote')
     .then(response => response.json())
     .then(jsonResponse => {
-      let singleQuote = null;
+      var singleQuote = null;
 
       if (jsonResponse.length) {
         singleQuote = jsonResponse[Math.floor(Math.random() * jsonResponse.length)];
@@ -20,7 +20,7 @@ function generateQuote() {
 }
 
 function displayQuote() {
-  const quoteDisplay = document.getElementById("quote-display");
+  var quoteDisplay = document.getElementById("quote-display");
   if (meme.quote) {
     quoteDisplay.innerHTML = `<p>${meme.quote}</p>`;
   } else {
@@ -30,14 +30,14 @@ function displayQuote() {
 
 $("#quote-btn").click(generateQuote);
 
-const apikey = "fC3IfRYFrPhw6uqa9envFuRBednzN9PspuoNszKCJR6xrya5LRl6WPJl";
-const input = document.querySelector("input");
-const searchBtn = document.querySelector(".search_btn");
-const showMoreBtn = document.querySelector(".showmore");
+var apikey = "fC3IfRYFrPhw6uqa9envFuRBednzN9PspuoNszKCJR6xrya5LRl6WPJl";
+var input = document.querySelector("input");
+var searchBtn = document.querySelector(".search_btn");
+var showMoreBtn = document.querySelector(".showmore");
 
-let page_num = 1;
-let search_text = "";
-let search = false;
+var page_num = 1;
+var search_text = "";
+var search = false;
 
 input.addEventListener("input", (event) => {
   event.preventDefault();
@@ -45,16 +45,15 @@ input.addEventListener("input", (event) => {
 });
 
 async function CuratedPhotos(page_num) {
-  // Code to be executed
   // Fetch the data from the API
-  const data = await fetch(`https://api.pexels.com/v1/curated?page=${page_num}&per_page=1`, {
+  var data = await fetch(`https://api.pexels.com/v1/curated?query=dog&page=${page_num}&per_page=1`, {
     method: "GET",
     headers: {
       Accept: "application/json",
       Authorization: apikey,
     },
   });
-  const response = await data.json(); 
+  var response = await data.json(); 
   console.log(response);
 
   // Display image
@@ -64,7 +63,7 @@ async function CuratedPhotos(page_num) {
 function displayImages(response) {
   // Use forEach loop to iterate on each item
   response.photos.forEach((image) => {
-    const photo = document.createElement("div");
+    var photo = document.createElement("div");
     photo.innerHTML = `<img src=${image.src.large}>`;
     document.querySelector(".display_images").appendChild(photo);
   });
@@ -81,7 +80,7 @@ searchBtn.addEventListener("click", () => {
 });
 
 async function SearchPhotos(query, page_num) {
-  const data = await fetch(`https://api.pexels.com/v1/search?query=dog+${query}&page=${page_num}&per_page=1`, {
+  var data = await fetch(`https://api.pexels.com/v1/search?query=dog+${query}&page=${page_num}&per_page=1`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -89,7 +88,7 @@ async function SearchPhotos(query, page_num) {
     },
   });
 
-  const response = await data.json();
+  var response = await data.json();
   console.log(response);
 
   displayImages(response);
@@ -100,15 +99,56 @@ function clearGallery() {
   page_num = 1;
 }
 
-showMoreBtn.addEventListener("click", () => {
-  if (!search) {
-    page_num++;
-    CuratedPhotos(page_num);
-  } else {
-    if (search_text.value === "") return;
-    page_num++;
-    SearchPhotos(search_text, page_num);
-  }
-});
+var titleInput = document.getElementById("titleInput");
+var saveButton = document.getElementById("saveButton");
+var titleList = document.getElementById("titleList");
 
-CuratedPhotos(page_num);
+// Function to save a title to local storage and create a button
+function saveTitle() {
+  var title = titleInput.value;
+
+  if (title.trim() === "") {
+    alert("Please enter a title.");
+    return;
+  }
+
+  // Save the title to local storage
+  localStorage.setItem(`savedTitle-${Date.now()}`, title);
+
+  // Create a button to display the saved title
+  var button = document.createElement("button");
+  button.textContent = title;
+  button.classList.add("waves-effect", "waves-light", "btn", "create-btn");
+  button.addEventListener("click", function() {
+    alert(`You clicked on: ${title}`);
+  });
+
+  // Add the button to the list
+  titleList.appendChild(button);
+
+  // Clear the input field
+  titleInput.value = "";
+}
+
+// Event listener for the "Save" button
+saveButton.addEventListener("click", saveTitle);
+
+// Function to load saved titles from local storage
+function loadSavedTitles() {
+  for (let i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    if (key.startsWith("savedTitle-")) {
+      var title = localStorage.getItem(key);
+      var button = document.createElement("button");
+      button.classList.add("waves-effect", "waves-light", "btn", "create-btn");
+      button.textContent = title;
+      button.addEventListener("click", function() {
+        alert(`You clicked on: ${title}`);
+      });
+      titleList.appendChild(button);
+    }
+  }
+}
+
+// Load saved titles when the page loads
+loadSavedTitles();
