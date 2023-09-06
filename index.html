@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Dog Meme Generator</title>
+
+     <!-- Import CSS -->
+     <link rel="stylesheet" type="text/css" href="styles.css">
+
+     <!-- Import Google Icon Font -->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+     <!-- Import materialize.css -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+     <!-- Import jQuery -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+     <!-- modal -->
+     <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>Please enter text</h4>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-teal btn-flat">Close</a>
+          </div>
+     </div>
+
+     <h1 class="title">Mutt Memes</h1>
+     <div class="row">
+          <!-- This div containes the buttons that will be created when saved -->
+          <div id="titleList" class="col s12 m4 l2">
+            <!-- Left Side Navigation Panel -->
+            <div id="saved" class="container">
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsTvzpn3umSeSwnWfkbSXjWYVPIY-ZMBZfhw&usqp=CAU" alt="404 No Saved Images" style="max-height:250px; min-height: 50px">
+            </div>
+          </div>
+          <div id="display-quote"></div>
+          <div class="col col s12 m8 l10">
+            <!-- Right Side Navigation Panel  -->
+            <section class="meme-container">
+               <!-- Input box to take input from User -->
+               <input type="text" class="input" placeholder="Search for dog image"/>
+               <button class="search_btn waves-effect waves-teal btn">Search</button>
+               <!-- Images to be displayed here -->
+               <div id="quote-display" class="text-overlay"></div>
+               <div class="display_images"></div>  
+               <div id="quote">
+                    <button id="quote-btn" class="waves-effect waves-teal btn">Get Quote</button>
+               </div>
+               <div id="save">
+                    <input type="text" id="titleInput" placeholder="Enter a title">
+                    <button id="saveButton" class="waves-effect waves-teal btn">Save</button>
+               </div>
+            </section>
+          </div>
+        <!-- Loading JavaScript -->
+        <script src="script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
