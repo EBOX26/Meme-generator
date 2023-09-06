@@ -23,7 +23,7 @@ function generateQuote() {
 function displayQuote() {
   var quoteDisplay = document.getElementById("quote-display");
   if (meme.quote) {
-    quoteDisplay.innerHTML = `<p>${meme.quote}</p>`;
+    quoteDisplay.innerHTML = `<p class = "quote-txt">${meme.quote}</p>`;
   } else {
     quoteDisplay.innerHTML = "<p>Failed to fetch a quote</p>";
   }
@@ -34,8 +34,6 @@ $("#quote-btn").click(generateQuote);
 var apikey = "fC3IfRYFrPhw6uqa9envFuRBednzN9PspuoNszKCJR6xrya5LRl6WPJl";
 var input = document.querySelector("input");
 var searchBtn = document.querySelector(".search_btn");
-var showMoreBtn = document.querySelector(".showmore");
-
 var page_num = 1;
 var search_text = "";
 var search = false;
@@ -68,16 +66,30 @@ function displayImages(response) {
     photo.innerHTML = `<img src=${image.src.large}>`;
     document.querySelector(".display_images").appendChild(photo);
   });
-}
+} 
 
-searchBtn.addEventListener("click", () => {
-  if (input.value === "") {
-    alert("Please enter text");
-    return;
-  }
-  clearGallery();
-  search = true;
-  SearchPhotos(search_text, page_num);
+//search button event listener and modal
+
+// Initialize the modal
+document.addEventListener('DOMContentLoaded', function () {
+  var modalElement = document.getElementById('modal1');
+  var modalInstance = M.Modal.init(modalElement, { dismissible: false });
+
+  searchBtn.addEventListener('click', () => {
+    if (input.value === '') {
+      // Open the modal
+      modalInstance.open();
+      return;
+    }
+    clearGallery();
+    search = true;
+    SearchPhotos(search_text, page_num);
+  });
+
+  // Close the modal when the user clicks the "Close" button
+  document.querySelector('.modal-close').addEventListener('click', () => {
+    modalInstance.close();
+  });
 });
 
 async function SearchPhotos(query, page_num) {
@@ -104,13 +116,23 @@ var titleInput = document.getElementById("titleInput");
 var saveButton = document.getElementById("saveButton");
 var titleList = document.getElementById("titleList");
 
-// Function to save a title to local storage and create a button
+// added code starts here
+
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById("modal1");
+  var instance = M.Modal.init(modal);
+});
+
 function saveTitle() {
+  var titleInput = document.getElementById("titleInput");
   var title = titleInput.value;
 
   if (title.trim() === "") {
-    alert("Please enter a title.");
-    return;
+      // Open the modal if the title is empty
+      var modal = document.getElementById("modal1");
+      var instance = M.Modal.getInstance(modal);
+      instance.open();
+      return;
   }
 
   // Save the title to local storage
@@ -119,13 +141,13 @@ function saveTitle() {
   // Create a button to display the saved title
   var button = document.createElement("button");
   button.textContent = title;
-  button.classList.add("waves-effect", "waves-light", "btn", "create-btn");
+  button.classList.add("waves-effect", "waves-teal", "btn", "create-btn");
   button.addEventListener("click", function() {
-    alert(`You clicked on: ${title}`);
+      // Handle button click (you can add your logic here)
   });
 
-  // Add the button to the list
-  titleList.appendChild(button);
+  // Add the button to the document
+   titleList.appendChild(button);
 
   // Clear the input field
   titleInput.value = "";
@@ -136,15 +158,15 @@ saveButton.addEventListener("click", saveTitle);
 
 // Function to load saved titles from local storage
 function loadSavedTitles() {
-  for (let i = 0; i < localStorage.length; i++) {
+  for (var i = 0; i < localStorage.length; i++) {
     var key = localStorage.key(i);
     if (key.startsWith("savedTitle-")) {
       var title = localStorage.getItem(key);
       var button = document.createElement("button");
-      button.classList.add("waves-effect", "waves-light", "btn", "create-btn");
+      button.classList.add("waves-effect", "waves-teal", "btn", "create-btn");
       button.textContent = title;
       button.addEventListener("click", function() {
-        alert(`You clicked on: ${title}`);
+       // will add code here
       });
       titleList.appendChild(button);
     }
