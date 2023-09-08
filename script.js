@@ -23,9 +23,9 @@ function generateQuote() {
 function displayQuote() {
   var quoteDisplay = document.getElementById("quote-display");
   if (meme.quote) {
-    quoteDisplay.innerHTML = `<p class = "quote-txt">${meme.quote}</p>`;
+    quoteDisplay.innerHTML = `<span class = "quote-txt">${meme.quote}</span>`;
   } else {
-    quoteDisplay.innerHTML = "<p>Failed to fetch a quote</p>";
+    quoteDisplay.innerHTML = "<span>Failed to fetch a quote</span>";
   }
 }
 
