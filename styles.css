@@ -1,4 +1,4 @@
-
+/* Buttons */
 .submitButton {
   padding: 6px;
   margin-top: 8px;
@@ -7,17 +7,17 @@
   border: 2px solid rgba(0, 0, 0, 0.072);
   cursor: pointer;
   text-align: center;
-   }
-   
-   
+}
+
+/* Quote Container */
 #quote {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 20px;
-
 }
 
+/* Meme Container */
 #meme {
   display: flex;
   align-items: center;
@@ -26,14 +26,15 @@
   min-height: 265px;
   padding: 20px;
 }
-   
+
+/* Save Container */
 #save {
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
-     
-   
+
+/* Saved Container */
 #saved {
   max-height: 250px;
   width: auto;
@@ -41,13 +42,13 @@
   align-items: center;
   justify-content: center;
 }
-   
+
 /* Headings */
 h1 {
   text-align: center;
   padding: 10px;
 }
-   
+
 /* Containers */
 .container {
   border-radius: 5px;
@@ -55,7 +56,7 @@ h1 {
   padding: 15px;
   box-shadow: 0 10px 40px -10px rgba(20, 22, 24, 0.5);
 }
-   
+
 /* Input */
 input {
   padding: 10px;
@@ -65,8 +66,8 @@ input {
   font-size: 25px;
   margin-left: 25%;
 }
-   
-  
+
+/* Displayed Images */
 .display_images img {
   border-radius: 5px;
   cursor: pointer;
@@ -77,16 +78,13 @@ input {
   max-width: 500px;
   max-height: 500px;
 }
-   
-   
+
 /* Figure Caption */
 figcaption {
   font-weight: bold;
   font-size: 15px;
 }
-   
 
-   
 /* Meme Container */
 .meme-container {
   border-radius: 5px;
@@ -98,7 +96,7 @@ figcaption {
   flex-wrap: wrap;
   flex-direction: column;
 }
-   
+
 /* Title */
 .title {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -106,37 +104,38 @@ figcaption {
   text-decoration: underline;
 }
 
+/* Create Button */
 .create-btn {
   margin-top: 7px;
   margin-right: 7px;
- }
-
-#lefty {
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
 }
 
-  
+/* Left Container */
+#lefty {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/* Right Container */
 #righty {
-  /* width: auto; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-
+/* Quote Text */
 .quote-txt {
   font-family: fantasy;
   position: relative;
   z-index: 1;
   font-size: larger;
-  line-height: 2.5
-
-
+  line-height: 0.5;
+  color: orangered;
 }
 
+/* Search Container */
 #search {
   display: flex;
   flex-wrap: wrap;
@@ -144,7 +143,25 @@ flex-wrap: wrap;
   padding: 20px;
 }
 
+/* PNG Container */
 #png {
   padding: 20px;
 }
 
+/* Text Overlay */
+.text-overlay {
+  position: relative;
+  top: 66px;
+}
+
+/* Display Images Container */
+.display_images {
+  position: relative;
+}
+
+/* Media Query */
+@media screen and (max-width: 480px) {
+  .quote-txt {
+    font-size: smaller;
+  }
+}
