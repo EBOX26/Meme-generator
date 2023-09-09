@@ -128,9 +128,8 @@ flex-wrap: wrap;
 
 
 .quote-txt {
-  height: 50px;
   font-family: fantasy;
-  position: absolute;
+  position: relative;
   z-index: 1;
   font-size: larger;
   line-height: 2.5
