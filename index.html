@@ -32,29 +32,46 @@
      <h1 class="title">Mutt Memes</h1>
      <div class="row">
           <!-- This div containes the buttons that will be created when saved -->
-          <div id="titleList" class="col s12 m4 l2">
+          <div id="lefty" class="col s12 m4 l2">
             <!-- Left Side Navigation Panel -->
             <div id="saved" class="container">
-               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsTvzpn3umSeSwnWfkbSXjWYVPIY-ZMBZfhw&usqp=CAU" alt="404 No Saved Images" style="max-height:250px; min-height: 50px">
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsTvzpn3umSeSwnWfkbSXjWYVPIY-ZMBZfhw&usqp=CAU" alt="404 No Saved Images" style="max-width:250px;">
             </div>
           </div>
-          <div id="display-quote"></div>
-          <div class="col col s12 m8 l10">
+          
+          <div id="righty" class="col col s12 m8 l10">
             <!-- Right Side Navigation Panel  -->
             <section class="meme-container">
+
                <!-- Input box to take input from User -->
-               <input type="text" class="input" placeholder="Search for dog image"/>
-               <button class="search_btn waves-effect waves-teal btn">Search</button>
+               <div id="search">
+                    <input type="text" class="input" placeholder="Search for dog image"/>
+                    <button class="search_btn waves-effect waves-teal btn">Search</button>    
+               </div>
+
                <!-- Images to be displayed here -->
-               <div id="quote-display" class="text-overlay"></div>
-               <div class="display_images"></div>  
+               <div id="meme">
+                    <div id="png" style="display: inline-block;">
+                         <!-- display quote -->
+                         <div id="quote-display" class="text-overlay"></div>
+                         <!-- display image -->
+                         <div class="display_images">
+
+                         </div> 
+                    </div>
+               </div>
+
+               <!-- Quote Generator Button -->
                <div id="quote">
                     <button id="quote-btn" class="waves-effect waves-teal btn">Get Quote</button>
-               </div>
+               </div> 
+
+               <!-- Save to local storage button -->
                <div id="save">
                     <input type="text" id="titleInput" placeholder="Enter a title">
                     <button id="saveButton" class="waves-effect waves-teal btn">Save</button>
                </div>
+
             </section>
           </div>
         <!-- Loading JavaScript -->
