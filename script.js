@@ -114,7 +114,7 @@ function clearGallery() {
 
 var titleInput = document.getElementById("titleInput");
 var saveButton = document.getElementById("saveButton");
-var titleList = document.getElementById("titleList");
+var titleList = document.getElementById("lefty");
 
 // added code starts here
 
