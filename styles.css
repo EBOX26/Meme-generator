@@ -159,9 +159,26 @@ figcaption {
   position: relative;
 }
 
+.screenshot {
+  position: relative;
+  text-align: center;
+  width: 90%;
+  margin-left: -100px;
+  margin-right: -100px;
+}
+
+.screenshot-img {
+  position: relative;
+   
+}
+
 /* Media Query */
 @media screen and (max-width: 480px) {
   .quote-txt {
     font-size: smaller;
   }
+  .screenshot-img {
+    width: 350px;
+  }
 }
+
