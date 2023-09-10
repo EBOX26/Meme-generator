@@ -23,7 +23,7 @@ function generateQuote() {
 function displayQuote() {
   var quoteDisplay = document.getElementById("quote-display");
   if (meme.quote) {
-    quoteDisplay.innerHTML = `<span class = "quote-txt">${meme.quote}</span>`;
+    quoteDisplay.innerHTML = `<span class="quote-txt">${meme.quote}</span>`;
   } else {
     quoteDisplay.innerHTML = "<span>Failed to fetch a quote</span>";
   }
@@ -52,7 +52,7 @@ async function CuratedPhotos(page_num) {
       Authorization: apikey,
     },
   });
-  var response = await data.json(); 
+  var response = await data.json();
   console.log(response);
 
   // Display image
@@ -66,9 +66,9 @@ function displayImages(response) {
     photo.innerHTML = `<img src=${image.src.large}>`;
     document.querySelector(".display_images").appendChild(photo);
   });
-} 
+}
 
-//search button event listener and modal
+// Search button event listener and modal
 
 // Initialize the modal
 document.addEventListener('DOMContentLoaded', function () {
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     SearchPhotos(search_text, page_num);
   });
 
-    // Close the modal when the user clicks the "Close" button
+  // Close the modal when the user clicks the "Close" button
   document.querySelector('.modal-close').addEventListener('click', () => {
     modalInstance.close();
   });
@@ -116,64 +116,33 @@ var titleInput = document.getElementById("titleInput");
 var saveButton = document.getElementById("saveButton");
 var titleList = document.getElementById("lefty");
 
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   var modal = document.getElementById("modal1");
   var instance = M.Modal.init(modal);
 });
-
-
-function captureScreenshot(title) {
-  var memeDiv = document.getElementById("meme");
-  
-  // Configure html2canvas with useCORS option
-  var options = {
-    useCORS: true, // Allow cross-origin content to be captured (important for certain websites)
-  };
-
-  // Use html2canvas with the configured options
-  html2canvas(memeDiv, options).then(function(canvas) {
-    // Convert canvas to an image
-    var screenshot = new Image();
-    screenshot.src = canvas.toDataURL("image/png");
-
-    // Save both title and screenshot to local storage
-    var entry = {
-      title: title,
-      screenshot: screenshot.src
-    };
-
-    // Generate a unique key using Date.now()
-    var key = `savedEntry-${Date.now()}`;
-
-    // Save the entry to local storage
-    localStorage.setItem(key, JSON.stringify(entry));
-
-    console.log(entry);
-  });
-}
 
 function saveTitle() {
   var titleInput = document.getElementById("titleInput");
   var title = titleInput.value;
 
   if (title.trim() === "") {
-      // Open the modal if the title is empty
-      var modal = document.getElementById("modal1");
-      var instance = M.Modal.getInstance(modal);
-      instance.open();
-      return;
+    // Open the modal if the title is empty
+    var modal = document.getElementById("modal1");
+    var instance = M.Modal.getInstance(modal);
+    instance.open();
+    return;
   }
 
-  // Pass the title to captureScreenshot
+  // Pass the title to captureScreenshot and use it as the key
   captureScreenshot(title);
 
   // Create a button to display the saved title
   var button = document.createElement("button");
   button.textContent = title;
   button.classList.add("waves-effect", "waves-teal", "btn", "create-btn");
-  button.addEventListener("click", function() {
-    // will add
+
+  button.addEventListener("click", function () {
+    displayScreenshot(title); // Display the corresponding screenshot when the button is clicked
   });
 
   // Add the button to the document
@@ -182,9 +151,36 @@ function saveTitle() {
   // Clear the input field
   titleInput.value = "";
 }
+
+function captureScreenshot(title) {
+  var memeDiv = document.getElementById("meme");
+
+  // Configure html2canvas with useCORS option
+  var options = {
+    useCORS: true, // Allow cross-origin content to be captured (needed for pexels API)
+  };
+
+  // Use html2canvas with the configured options
+  html2canvas(memeDiv, options).then(function (canvas) {
+    // Convert canvas to an image
+    var screenshot = new Image();
+    screenshot.src = canvas.toDataURL("image/png");
+
+    // Save both title and screenshot to local storage with the provided title as the key
+    var entry = {
+      title: title,
+      screenshot: screenshot.src,
+    };
+
+    // Save the entry to local storage with the provided title as the key
+    localStorage.setItem(title, JSON.stringify(entry));
+
+    console.log(entry);
+  });
+}
+
 // Event listener for the "Save" button
 saveButton.addEventListener("click", saveTitle);
-
 
 function displayScreenshot(entry) {
   // Display the screenshot in the "screenshotDisplay" element
@@ -197,29 +193,33 @@ function displayScreenshot(entry) {
   screenshotDisplay.appendChild(screenshotImg);
 }
 
-
 function loadSavedTitles() {
   var titleList = document.getElementById("lefty");
 
   for (var i = 0; i < localStorage.length; i++) {
-      var key = localStorage.key(i);
+    var key = localStorage.key(i);
 
-      if (key.startsWith("savedEntry-")) {
-          var entry = JSON.parse(localStorage.getItem(key));
+    var entry = JSON.parse(localStorage.getItem(key));
 
-          var button = document.createElement("button");
-          button.textContent = entry.title;
-          button.classList.add("waves-effect", "waves-teal", "btn", "create-btn");
+    var button = document.createElement("button");
+    button.textContent = entry.title;
+    button.classList.add("waves-effect", "waves-teal", "btn", "create-btn");
 
-          button.addEventListener("click", function () {
-              displayScreenshot(entry); // Display the corresponding screenshot when the button is clicked
-          });
+    button.addEventListener("click", function (currentKey) {
+      return function () {
+        var data = JSON.parse(localStorage.getItem(currentKey)); // Get data associated with the current key
+        console.log(currentKey); // Log the corresponding key when the button is clicked
+        displayScreenshot(data); // Display the corresponding screenshot when the button is clicked
+      };
+    }(key));
 
-          titleList.appendChild(button);
-      }
+    titleList.appendChild(button);
   }
 }
 
 loadSavedTitles();
+
+
+
 
 
