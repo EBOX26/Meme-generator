@@ -159,6 +159,7 @@ figcaption {
   position: relative;
 }
 
+/* Screenshot div */
 .screenshot {
   position: relative;
   text-align: center;
@@ -167,6 +168,7 @@ figcaption {
   margin-right: -100px;
 }
 
+/* Screenshot img */
 .screenshot-img {
   position: relative;
    
