@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     SearchPhotos(search_text, page_num);
   });
 
-  // Close the modal when the user clicks the "Close" button
+    // Close the modal when the user clicks the "Close" button
   document.querySelector('.modal-close').addEventListener('click', () => {
     modalInstance.close();
   });
@@ -116,12 +116,42 @@ var titleInput = document.getElementById("titleInput");
 var saveButton = document.getElementById("saveButton");
 var titleList = document.getElementById("lefty");
 
-// added code starts here
 
 document.addEventListener('DOMContentLoaded', function() {
   var modal = document.getElementById("modal1");
   var instance = M.Modal.init(modal);
 });
+
+
+function captureScreenshot(title) {
+  var memeDiv = document.getElementById("meme");
+  
+  // Configure html2canvas with useCORS option
+  var options = {
+    useCORS: true, // Allow cross-origin content to be captured (important for certain websites)
+  };
+
+  // Use html2canvas with the configured options
+  html2canvas(memeDiv, options).then(function(canvas) {
+    // Convert canvas to an image
+    var screenshot = new Image();
+    screenshot.src = canvas.toDataURL("image/png");
+
+    // Save both title and screenshot to local storage
+    var entry = {
+      title: title,
+      screenshot: screenshot.src
+    };
+
+    // Generate a unique key using Date.now()
+    var key = `savedEntry-${Date.now()}`;
+
+    // Save the entry to local storage
+    localStorage.setItem(key, JSON.stringify(entry));
+
+    console.log(entry);
+  });
+}
 
 function saveTitle() {
   var titleInput = document.getElementById("titleInput");
@@ -135,43 +165,61 @@ function saveTitle() {
       return;
   }
 
-  // Save the title to local storage
-  localStorage.setItem(`savedTitle-${Date.now()}`, title);
+  // Pass the title to captureScreenshot
+  captureScreenshot(title);
 
   // Create a button to display the saved title
   var button = document.createElement("button");
   button.textContent = title;
   button.classList.add("waves-effect", "waves-teal", "btn", "create-btn");
   button.addEventListener("click", function() {
-      // Handle button click (you can add your logic here)
+    // will add
   });
 
   // Add the button to the document
-   titleList.appendChild(button);
+  titleList.appendChild(button);
 
   // Clear the input field
   titleInput.value = "";
 }
-
 // Event listener for the "Save" button
 saveButton.addEventListener("click", saveTitle);
 
-// Function to load saved titles from local storage
+
+function displayScreenshot(entry) {
+  // Display the screenshot in the "screenshotDisplay" element
+  var screenshotDisplay = document.getElementById("screenshotDisplay");
+  screenshotDisplay.innerHTML = ""; // Clear any existing content
+
+  var screenshotImg = new Image();
+  screenshotImg.src = entry.screenshot;
+  screenshotImg.className = "screenshot-img";
+  screenshotDisplay.appendChild(screenshotImg);
+}
+
+
 function loadSavedTitles() {
+  var titleList = document.getElementById("lefty");
+
   for (var i = 0; i < localStorage.length; i++) {
-    var key = localStorage.key(i);
-    if (key.startsWith("savedTitle-")) {
-      var title = localStorage.getItem(key);
-      var button = document.createElement("button");
-      button.classList.add("waves-effect", "waves-teal", "btn", "create-btn");
-      button.textContent = title;
-      button.addEventListener("click", function() {
-       // will add code here
-      });
-      titleList.appendChild(button);
-    }
+      var key = localStorage.key(i);
+
+      if (key.startsWith("savedEntry-")) {
+          var entry = JSON.parse(localStorage.getItem(key));
+
+          var button = document.createElement("button");
+          button.textContent = entry.title;
+          button.classList.add("waves-effect", "waves-teal", "btn", "create-btn");
+
+          button.addEventListener("click", function () {
+              displayScreenshot(entry); // Display the corresponding screenshot when the button is clicked
+          });
+
+          titleList.appendChild(button);
+      }
   }
 }
 
-// Load saved titles when the page loads
 loadSavedTitles();
+
+
